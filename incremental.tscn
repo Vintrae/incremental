@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://b245c2j86ri2i"]
+
+[ext_resource type="Script" uid="uid://d2ejyfd0cwkcw" path="res://Scripts/Ship/MoveShip.cs" id="1_wyhgt"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_xvrlm"]
+
+[node name="Main" type="Node" unique_id=839225049]
+
+[node name="Water" type="Node2D" parent="." unique_id=757683687]
+
+[node name="ColorRect" type="ColorRect" parent="Water" unique_id=1388832387]
+offset_right = 720.0
+offset_bottom = 1280.0
+color = Color(0.8646751, 0.86467516, 0.8646751, 1)
+
+[node name="Ship" type="Node2D" parent="Water" unique_id=416341050]
+script = ExtResource("1_wyhgt")
+
+[node name="ColorRect" type="ColorRect" parent="Water/Ship" unique_id=163757921]
+offset_left = 330.0
+offset_top = 366.0
+offset_right = 370.0
+offset_bottom = 406.0
+
+[node name="Menu" type="TouchScreenButton" parent="Water" unique_id=1621584668]
+texture_normal = SubResource("CanvasTexture_xvrlm")
