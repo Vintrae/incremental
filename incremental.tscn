@@ -23,5 +23,5 @@ offset_top = -20.0
 offset_right = 20.0
 offset_bottom = 20.0
 
-[node name="Menu" type="TouchScreenButton" parent="Water" unique_id=1621584668]
+[node name="Menu" type="TouchScreenButton" parent="." unique_id=1621584668]
 texture_normal = SubResource("CanvasTexture_xvrlm")
