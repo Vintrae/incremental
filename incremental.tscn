@@ -14,13 +14,14 @@ offset_bottom = 1280.0
 color = Color(0.8646751, 0.86467516, 0.8646751, 1)
 
 [node name="Ship" type="Node2D" parent="Water" unique_id=416341050]
+position = Vector2(350, 386)
 script = ExtResource("1_wyhgt")
 
 [node name="ColorRect" type="ColorRect" parent="Water/Ship" unique_id=163757921]
-offset_left = 330.0
-offset_top = 366.0
-offset_right = 370.0
-offset_bottom = 406.0
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
 
 [node name="Menu" type="TouchScreenButton" parent="Water" unique_id=1621584668]
 texture_normal = SubResource("CanvasTexture_xvrlm")
