@@ -15,7 +15,7 @@ public partial class MoveShip : Node2D
 		_destination = Position;
 	}
 
-	public override void _Input(InputEvent @event)
+	public override void _UnhandledInput(InputEvent @event)
     {
         if (@event is InputEventScreenTouch touch && touch.Pressed)
         {
