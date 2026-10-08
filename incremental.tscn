@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d2ejyfd0cwkcw" path="res://Scripts/Ship/MoveShip.cs" id="1_wyhgt"]
 [ext_resource type="Script" uid="uid://ckshijxfpwke7" path="res://UpgradeMenuButton.cs" id="2_5twbt"]
-[ext_resource type="Texture2D" uid="uid://c5khudsjcmfux" path="res://Art/boat.png" id="2_le6tf"]
+[ext_resource type="Texture2D" uid="uid://c5khudsjcmfux" path="res://Art/Ship/boat.png" id="2_le6tf"]
 
 [node name="Main" type="Node" unique_id=839225049]
 
@@ -33,3 +33,4 @@ script = ExtResource("2_5twbt")
 
 [node name="PopupMenu" type="PopupMenu" parent="Menu" unique_id=365877795]
 oversampling_override = 1.0
+visible = true
