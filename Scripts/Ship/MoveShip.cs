@@ -38,6 +38,8 @@ public partial class MoveShip : Node2D
             return;
         }
 
+        Vector2 direction = _destination - GlobalPosition;
+        Rotation = direction.Angle() + Mathf.Pi / 2;
         Position = Position.MoveToward(_destination, Speed * (float)delta);
     }
 }

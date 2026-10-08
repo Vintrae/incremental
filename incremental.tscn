@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d2ejyfd0cwkcw" path="res://Scripts/Ship/MoveShip.cs" id="1_wyhgt"]
 [ext_resource type="Script" uid="uid://ckshijxfpwke7" path="res://UpgradeMenuButton.cs" id="2_5twbt"]
+[ext_resource type="Texture2D" uid="uid://c5khudsjcmfux" path="res://Art/boat.png" id="2_le6tf"]
 
 [node name="Main" type="Node" unique_id=839225049]
 
@@ -18,11 +19,17 @@ position = Vector2(350, 386)
 script = ExtResource("1_wyhgt")
 
 [node name="ColorRect" type="ColorRect" parent="Water/Ship" unique_id=163757921]
+visible = false
 offset_left = -20.0
 offset_top = -20.0
 offset_right = 20.0
 offset_bottom = 20.0
 mouse_filter = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Water/Ship" unique_id=1468101175]
+texture_filter = 1
+scale = Vector2(3, 3)
+texture = ExtResource("2_le6tf")
 
 [node name="Menu" type="Button" parent="." unique_id=1939302994]
 offset_left = 592.0
