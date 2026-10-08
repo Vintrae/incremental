@@ -33,4 +33,3 @@ script = ExtResource("2_5twbt")
 
 [node name="PopupMenu" type="PopupMenu" parent="Menu" unique_id=365877795]
 oversampling_override = 1.0
-visible = true
