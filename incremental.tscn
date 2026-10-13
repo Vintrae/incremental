@@ -30,3 +30,7 @@ fishPool = Array[Object]([ExtResource("5_w1uux")])
 
 [node name="SpawnTimer" type="Timer" parent="SpawnService" unique_id=337803992]
 autostart = true
+
+[node name="FishingService" type="Node2D" parent="." unique_id=624556438]
+
+[node name="EconomyService" type="Node2D" parent="." unique_id=49563936]
