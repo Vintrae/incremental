@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://d2ejyfd0cwkcw" path="res://Scripts/Ship/MoveShip.cs" id="1_wyhgt"]
 [ext_resource type="Texture2D" uid="uid://c5khudsjcmfux" path="res://Art/Ship/boat.png" id="2_le6tf"]
+[ext_resource type="Script" uid="uid://bydx7r3aq6xfl" path="res://Scripts/Services/SpawnService.cs" id="4_w1uux"]
+[ext_resource type="Resource" uid="uid://bfm4tpmeaufk4" path="res://Resources/cod.tres" id="5_w1uux"]
 
 [node name="Main" type="Node" unique_id=839225049]
 
@@ -22,4 +24,9 @@ texture_filter = 1
 scale = Vector2(3, 3)
 texture = ExtResource("2_le6tf")
 
-[node name="FishNode" type="Node2D" parent="." unique_id=77930141]
+[node name="SpawnService" type="Node2D" parent="." unique_id=1251282610]
+script = ExtResource("4_w1uux")
+fishPool = Array[Object]([ExtResource("5_w1uux")])
+
+[node name="SpawnTimer" type="Timer" parent="SpawnService" unique_id=337803992]
+autostart = true
