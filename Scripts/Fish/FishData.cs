@@ -10,7 +10,7 @@ public enum BiomeType
 }
 
 [GlobalClass]
-public partial class FishData : Resource, ISpawneable
+public partial class FishData : Resource, ISpawnable
 {
     [Export] public string FishName { get; set; } = "Goldfish";
     [Export] public double BaseValue { get; set; } = 10.0;
@@ -19,5 +19,6 @@ public partial class FishData : Resource, ISpawneable
 
     [ExportGroup("Spawn Rules")]
     [Export] public int SpawnWeight { get; set; } = 100; // Lower weight = rarer
+    [Export] public bool IsUnlocked { get; set; } = false;
     [Export] public BiomeType AllowedBiome { get; set; } = BiomeType.ShallowWater;
 }
