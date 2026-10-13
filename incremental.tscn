@@ -21,3 +21,5 @@ script = ExtResource("1_wyhgt")
 texture_filter = 1
 scale = Vector2(3, 3)
 texture = ExtResource("2_le6tf")
+
+[node name="FishNode" type="Node2D" parent="." unique_id=77930141]
