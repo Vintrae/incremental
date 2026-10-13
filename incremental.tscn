@@ -1,9 +1,7 @@
 [gd_scene format=3 uid="uid://b245c2j86ri2i"]
 
 [ext_resource type="Script" uid="uid://d2ejyfd0cwkcw" path="res://Scripts/Ship/MoveShip.cs" id="1_wyhgt"]
-[ext_resource type="Script" uid="uid://ckshijxfpwke7" path="res://UpgradeMenuButton.cs" id="2_5twbt"]
 [ext_resource type="Texture2D" uid="uid://c5khudsjcmfux" path="res://Art/Ship/boat.png" id="2_le6tf"]
-[ext_resource type="Texture2D" uid="uid://cxxkcgpvd8jqj" path="res://Art/Fish/cod.png" id="3_7kh8x"]
 
 [node name="Main" type="Node" unique_id=839225049]
 
@@ -23,18 +21,3 @@ script = ExtResource("1_wyhgt")
 texture_filter = 1
 scale = Vector2(3, 3)
 texture = ExtResource("2_le6tf")
-
-[node name="Fish" type="Sprite2D" parent="." unique_id=131590660]
-position = Vector2(507, 168)
-texture = ExtResource("3_7kh8x")
-
-[node name="Menu" type="Button" parent="." unique_id=1939302994]
-offset_left = 592.0
-offset_top = 992.0
-offset_right = 606.4491
-offset_bottom = 1040.0
-scale = Vector2(3.322, 1)
-script = ExtResource("2_5twbt")
-
-[node name="PopupMenu" type="PopupMenu" parent="Menu" unique_id=365877795]
-oversampling_override = 1.0
