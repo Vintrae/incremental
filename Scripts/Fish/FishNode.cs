@@ -18,4 +18,23 @@ public partial class FishNode : Sprite2D
         
         GD.Print($"Spawned fish node for: {_data.FishName}");
     }
+
+    private void _Ready()
+    {
+        // Create a collision box for the fish node
+        var capsuleShape = new CapsuleShape2D
+        {
+            Height = 44,
+            Radius = 15
+        };
+
+        var collisionShape = new CollisionShape2D
+        {
+            Shape = capsuleShape,
+            Position = new Vector2(2, 0),
+            Rotation = Mathf.Pi / 2
+        };
+
+        AddChild(collisionShape);
+    }
 }

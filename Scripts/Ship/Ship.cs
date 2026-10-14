@@ -1,10 +1,12 @@
 using Godot;
 using System;
+using System.Runtime.CompilerServices;
 
-public partial class MoveShip : Node2D
+public partial class Ship : Node2D
 {
 	private Vector2 _destination;
 	private bool _hasDestination;
+    private Area2D _fishingArea;
 
 	[Export]
     public float Speed = 500f;
@@ -13,7 +15,11 @@ public partial class MoveShip : Node2D
 	public override void _Ready()
 	{
 		_destination = Position;
-	}
+        _fishingArea = GetNode<Area2D>("FishingArea");
+
+        _fishingArea.AreaEntered += OnFishingAreaAreaEntered;
+        _fishingArea.AreaExited += OnFishingAreaAreaExited;
+    }
 
 	public override void _UnhandledInput(InputEvent @event)
     {
@@ -42,4 +48,17 @@ public partial class MoveShip : Node2D
         Rotation = direction.Angle() + Mathf.Pi / 2;
         Position = Position.MoveToward(_destination, Speed * (float)delta);
     }
+
+    private void OnFishingAreaAreaEntered(Area2D area)
+    {
+        GD.Print("Ship entered fishing area: " + area.Name);
+        // You can add logic here to start fishing or trigger events
+    }
+
+    private void OnFishingAreaAreaExited(Area2D area)
+    {
+        GD.Print("Ship exited fishing area: " + area.Name);
+        // You can add logic here to stop fishing or trigger events
+    }   
+
 }
