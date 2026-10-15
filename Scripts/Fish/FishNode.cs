@@ -6,6 +6,7 @@ public partial class FishNode : Sprite2D, ICatchable
     private FishData _data;
 
     public FishData Data => _data;
+    public double BaseValue => _data?.BaseValue ?? 0.0;
     public float CatchDifficulty => _data?.CatchDifficulty ?? 1.0f;
 
     // This method initializes the node with the specific FishData (e.g., "cod")
@@ -24,7 +25,7 @@ public partial class FishNode : Sprite2D, ICatchable
 
     public override void _Ready()
     {
-        this.ZIndex = 0;
+        ZIndex = 0;
         // Create an Area2D for fishing interactions.
         var catchArea = new Area2D { Name = "CatchArea" };
         AddChild(catchArea);

@@ -11,7 +11,7 @@ public partial class FishingService : Node
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		var fishingArea = GetNode<Area2D>("../Entities/Ship/FishingArea");
+		var fishingArea = GetNode<Area2D>("../../Entities/Ship/FishingArea");
 		fishingArea.AreaEntered += OnFishingAreaEntered;
 		fishingArea.AreaExited += OnFishingAreaExited;
 	}

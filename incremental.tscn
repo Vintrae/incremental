@@ -2,14 +2,34 @@
 
 [ext_resource type="Texture2D" uid="uid://c5khudsjcmfux" path="res://Art/Ship/boat.png" id="2_le6tf"]
 [ext_resource type="Script" uid="uid://dwuwllihyxbyb" path="res://Scripts/Ship/Ship.cs" id="3_7kh8x"]
+[ext_resource type="Script" uid="uid://d5bvyqup8efu" path="res://Scripts/Services/EconomyService.cs" id="3_hr7sg"]
 [ext_resource type="Script" uid="uid://cpi2rrcyfg3kp" path="res://Scripts/Services/FishingService.cs" id="3_w1uux"]
 [ext_resource type="Script" uid="uid://bydx7r3aq6xfl" path="res://Scripts/Services/SpawnService.cs" id="4_w1uux"]
+[ext_resource type="Script" uid="uid://bdad8kxlan2g3" path="res://Scripts/Services/UIService.cs" id="5_7qok5"]
 [ext_resource type="Resource" uid="uid://bfm4tpmeaufk4" path="res://Resources/cod.tres" id="5_w1uux"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_16owh"]
 radius = 53.08484
 
 [node name="Main" type="Node" unique_id=839225049]
+
+[node name="Services" type="Node" parent="." unique_id=714763137]
+
+[node name="SpawnService" type="Node2D" parent="Services" unique_id=1251282610]
+script = ExtResource("4_w1uux")
+fishPool = Array[Object]([ExtResource("5_w1uux")])
+
+[node name="SpawnTimer" type="Timer" parent="Services/SpawnService" unique_id=337803992]
+autostart = true
+
+[node name="EconomyService" type="Node2D" parent="Services" unique_id=49563936]
+script = ExtResource("3_hr7sg")
+
+[node name="FishingService" type="Node2D" parent="Services" unique_id=624556438]
+script = ExtResource("3_w1uux")
+
+[node name="UIService" type="Node2D" parent="Services" unique_id=320603281]
+script = ExtResource("5_7qok5")
 
 [node name="Water" type="Node2D" parent="." unique_id=757683687]
 
@@ -19,18 +39,6 @@ offset_right = 720.0
 offset_bottom = 1280.0
 mouse_filter = 2
 color = Color(0.23529412, 0.43137255, 1, 0.3254902)
-
-[node name="SpawnService" type="Node2D" parent="." unique_id=1251282610]
-script = ExtResource("4_w1uux")
-fishPool = Array[Object]([ExtResource("5_w1uux")])
-
-[node name="SpawnTimer" type="Timer" parent="SpawnService" unique_id=337803992]
-autostart = true
-
-[node name="FishingService" type="Node2D" parent="." unique_id=624556438]
-script = ExtResource("3_w1uux")
-
-[node name="EconomyService" type="Node2D" parent="." unique_id=49563936]
 
 [node name="Entities" type="Node2D" parent="." unique_id=1418007889]
 
@@ -50,12 +58,14 @@ polygon = PackedVector2Array(-26, -27, -1, -52, 23, -27, 23, 37, -26, 37)
 [node name="FishingArea" type="Area2D" parent="Entities/Ship" unique_id=1872447168]
 
 [node name="FishingRadius" type="CollisionShape2D" parent="Entities/Ship/FishingArea" unique_id=395361586]
+show_behind_parent = true
 shape = SubResource("CircleShape2D_16owh")
 
 [node name="UI" type="Node2D" parent="." unique_id=717643222]
 
 [node name="Score" type="Label" parent="UI" unique_id=1305338565]
-offset_left = 658.0
-offset_top = 14.0
-offset_right = 698.0
-offset_bottom = 37.0
+offset_left = 620.0
+offset_top = 11.0
+offset_right = 672.0
+offset_bottom = 34.0
+text = "Score: "
