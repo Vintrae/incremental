@@ -62,6 +62,7 @@ show_behind_parent = true
 shape = SubResource("CircleShape2D_16owh")
 
 [node name="UI" type="Node2D" parent="." unique_id=717643222]
+z_index = 1000
 
 [node name="Score" type="Label" parent="UI" unique_id=1305338565]
 offset_left = 620.0
