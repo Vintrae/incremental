@@ -1,7 +1,7 @@
 // FishNode.cs
 using Godot;
 
-public partial class FishNode : Sprite2D, ICatchable
+public partial class FishNode : Sprite2D, ICatchable, IValuable
 {
     private FishData _data;
 

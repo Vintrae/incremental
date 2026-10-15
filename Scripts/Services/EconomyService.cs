@@ -16,9 +16,9 @@ public partial class EconomyService : Node
 
     private void OnEntityCaught(Node entity)
     {
-        if (entity is ICatchable catchable)
+        if (entity is IValuable valuable)
         {
-            Score += catchable.BaseValue;
+            Score += valuable.BaseValue;
             ScoreChanged?.Invoke(Score);
         }
     }
