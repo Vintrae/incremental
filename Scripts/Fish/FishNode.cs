@@ -24,6 +24,7 @@ public partial class FishNode : Sprite2D, ICatchable
 
     public override void _Ready()
     {
+        this.ZIndex = 0;
         // Create an Area2D for fishing interactions.
         var catchArea = new Area2D { Name = "CatchArea" };
         AddChild(catchArea);
