@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://c5khudsjcmfux" path="res://Art/Ship/boat.png" id="2_le6tf"]
 [ext_resource type="Script" uid="uid://dwuwllihyxbyb" path="res://Scripts/Ship/Ship.cs" id="3_7kh8x"]
+[ext_resource type="Script" uid="uid://cpi2rrcyfg3kp" path="res://Scripts/Services/FishingService.cs" id="3_w1uux"]
 [ext_resource type="Script" uid="uid://bydx7r3aq6xfl" path="res://Scripts/Services/SpawnService.cs" id="4_w1uux"]
 [ext_resource type="Resource" uid="uid://bfm4tpmeaufk4" path="res://Resources/cod.tres" id="5_w1uux"]
 
@@ -26,6 +27,7 @@ fishPool = Array[Object]([ExtResource("5_w1uux")])
 autostart = true
 
 [node name="FishingService" type="Node2D" parent="." unique_id=624556438]
+script = ExtResource("3_w1uux")
 
 [node name="EconomyService" type="Node2D" parent="." unique_id=49563936]
 

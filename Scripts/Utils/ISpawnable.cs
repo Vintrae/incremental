@@ -1,7 +1,5 @@
 using System.Collections.Generic;
-using System.Linq;
 
-// ISpawnable.cs
 public interface ISpawnable
 {
     // Integer weight used for spawn probability calculations. Must be non-negative.

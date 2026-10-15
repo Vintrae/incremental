@@ -7,6 +7,6 @@
 script = ExtResource("1_7v4yi")
 FishName = "Cod"
 BaseValue = 1.0
-CatchDifficulty = 10.0
+CatchDifficulty = 3.0
 Icon = ExtResource("1_arspk")
 metadata/_custom_type_script = "uid://ddxurjofo3yl5"

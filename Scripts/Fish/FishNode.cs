@@ -1,9 +1,12 @@
 // FishNode.cs
 using Godot;
 
-public partial class FishNode : Sprite2D
+public partial class FishNode : Sprite2D, ICatchable
 {
     private FishData _data;
+
+    public FishData Data => _data;
+    public float CatchDifficulty => _data?.CatchDifficulty ?? 1.0f;
 
     // This method initializes the node with the specific FishData (e.g., "cod")
     public void Initialize(FishData fishData)
@@ -19,9 +22,13 @@ public partial class FishNode : Sprite2D
         GD.Print($"Spawned fish node for: {_data.FishName}");
     }
 
-    private void _Ready()
+    public override void _Ready()
     {
-        // Create a collision box for the fish node
+        // Create an Area2D for fishing interactions.
+        var catchArea = new Area2D { Name = "CatchArea" };
+        AddChild(catchArea);
+
+        // Create a collision box for the Area2D.
         var capsuleShape = new CapsuleShape2D
         {
             Height = 44,
@@ -35,6 +42,6 @@ public partial class FishNode : Sprite2D
             Rotation = Mathf.Pi / 2
         };
 
-        AddChild(collisionShape);
+        catchArea.AddChild(collisionShape);
     }
 }

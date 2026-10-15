@@ -10,7 +10,7 @@ public enum BiomeType
 }
 
 [GlobalClass]
-public partial class FishData : Resource, ISpawnable
+public partial class FishData : Resource, ISpawnable, ICatchable
 {
     [Export] public string FishName { get; set; } = "Goldfish";
     [Export] public double BaseValue { get; set; } = 10.0;
