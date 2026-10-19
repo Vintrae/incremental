@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cko2vi8cff7ku"]
+
+[ext_resource type="Texture2D" uid="uid://cxxkcgpvd8jqj" path="res://Art/Fish/cod.png" id="1_15fnf"]
+[ext_resource type="Script" uid="uid://cm7fymo4mwh4q" path="res://Scripts/Fish/FishController.cs" id="1_two43"]
+
+[node name="Fish" type="Node2D" unique_id=283260503]
+script = ExtResource("1_two43")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=446294725]
+texture = ExtResource("1_15fnf")

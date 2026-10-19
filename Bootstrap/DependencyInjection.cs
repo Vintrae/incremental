@@ -11,6 +11,8 @@ public static class DependencyInjection
         var services = new ServiceCollection();
 
         services.AddSingleton<IBoatMovementService, BoatMovementService>();
+        services.AddSingleton<IFishSpawnService, FishSpawnService>();
+        services.AddSingleton<IFishDetectionService, FishDetectionService>();
 
         return services.BuildServiceProvider();
     }
