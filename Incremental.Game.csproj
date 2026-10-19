@@ -1,0 +1,16 @@
+﻿<Project Sdk="Godot.NET.Sdk/4.7.2">
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.13" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Incremental.Application\Incremental.Application.csproj" />
+		<ProjectReference Include="..\Incremental.Infrastructure\Incremental.Infrastructure.csproj" />
+	</ItemGroup>
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<TargetFramework Condition=" '$(GodotTargetPlatform)' == 'android' ">net9.0</TargetFramework>
+		<EnableDynamicLoading>true</EnableDynamicLoading>
+	</PropertyGroup>
+</Project>

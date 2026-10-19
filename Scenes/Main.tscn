@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bavivc3psrrmh"]
+
+[ext_resource type="Script" uid="uid://bctirw4y6qpmx" path="res://Bootstrap/GameBootstrap.cs" id="1_r150o"]
+[ext_resource type="Script" uid="uid://cin5vd0boaco2" path="res://Scripts/Boats/BoatController.cs" id="2_kln2b"]
+[ext_resource type="Texture2D" uid="uid://c5khudsjcmfux" path="res://Art/Ship/boat.png" id="3_rgh2o"]
+
+[node name="Main" type="Node2D" unique_id=1224104352]
+script = ExtResource("1_r150o")
+
+[node name="Boat" type="Node2D" parent="." unique_id=1874084523]
+script = ExtResource("2_kln2b")
+
+[node name="Polygon2D" type="Polygon2D" parent="Boat" unique_id=594645936]
+texture = ExtResource("3_rgh2o")
+texture_offset = Vector2(20, 20)
+polygon = PackedVector2Array(-0.654274, -15.298836, 6.527485, -6.9201155, 5.569916, 11.7524605, -7.35725, 11.513069, -8.314819, -7.8776836)
+uv = PackedVector2Array(-0.654274, -16.256403, 6.2880936, -8.59586, 6.527485, 11.273676, -7.5966415, 11.034285, -7.35725, -9.553428)

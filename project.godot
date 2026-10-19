@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="Incremental"
-run/main_scene="uid://b245c2j86ri2i"
+config/name="Incremental.Game"
+run/main_scene="uid://bavivc3psrrmh"
 config/features=PackedStringArray("4.7", "C#", "Mobile")
 config/icon="res://icon.svg"
 
@@ -23,7 +23,7 @@ window/stretch/mode="canvas_items"
 
 [dotnet]
 
-project/assembly_name="Incremental"
+project/assembly_name="Incremental.Game"
 
 [input_devices]
 
