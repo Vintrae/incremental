@@ -7,6 +7,7 @@
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Incremental.Application\Incremental.Application.csproj" />
+		<ProjectReference Include="..\Incremental.Domain\Incremental.Domain.csproj" />
 		<ProjectReference Include="..\Incremental.Infrastructure\Incremental.Infrastructure.csproj" />
 	</ItemGroup>
 	<PropertyGroup>

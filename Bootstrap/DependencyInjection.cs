@@ -13,6 +13,7 @@ public static class DependencyInjection
         services.AddSingleton<IBoatMovementService, BoatMovementService>();
         services.AddSingleton<IFishSpawnService, FishSpawnService>();
         services.AddSingleton<IFishDetectionService, FishDetectionService>();
+        services.AddSingleton<IFishCaptureService, FishCaptureService>();
 
         return services.BuildServiceProvider();
     }

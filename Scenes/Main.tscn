@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://u7743tdwdfv2" path="res://Scripts/Boats/FishingRadius.cs" id="4_v1gob"]
 [ext_resource type="PackedScene" uid="uid://cko2vi8cff7ku" path="res://Scenes/Fish.tscn" id="5_pbw6q"]
 [ext_resource type="Script" uid="uid://c4g0eb7w6l6qq" path="res://Scripts/Boats/BoatFishingDetector.cs" id="7_jw32o"]
+[ext_resource type="Script" uid="uid://b3mducsmgy5li" path="res://Scripts/Boats/BoatFishingController.cs" id="8_50glp"]
 
 [node name="Main" type="Node2D" unique_id=1224104352]
 script = ExtResource("1_r150o")
@@ -32,3 +33,6 @@ MapSize = Vector2(720, 1280)
 
 [node name="BoatFishingDetector" type="Node" parent="." unique_id=912427545]
 script = ExtResource("7_jw32o")
+
+[node name="BoatFishingController" type="Node" parent="." unique_id=559975149]
+script = ExtResource("8_50glp")

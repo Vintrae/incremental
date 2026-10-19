@@ -23,11 +23,19 @@ public partial class GameBootstrap : Node2D
 
         fishSpawner.Initialize(_serviceProvider.GetRequiredService<IFishSpawnService>());
 
+        fishSpawner.SpawnFish();
+
         BoatFishingDetector detector = GetNode<BoatFishingDetector>("BoatFishingDetector");
 
         detector.Initialize(_serviceProvider.GetRequiredService<IFishDetectionService>(), fishSpawner, boat);
 
-        fishSpawner.SpawnFish();
+        BoatFishingController fishingController = GetNode<BoatFishingController>("BoatFishingController");
+
+        fishingController.Initialize(
+            _serviceProvider.GetRequiredService<IFishCaptureService>(),
+            _serviceProvider.GetRequiredService<IFishDetectionService>(),
+            fishSpawner,
+            boat);
     }
 
     public override void _ExitTree()

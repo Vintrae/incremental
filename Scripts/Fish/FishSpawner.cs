@@ -51,4 +51,10 @@ public partial class FishSpawner : Node2D
             _fish.Add(spawn);
         }
     }
+
+    public void RemoveFish(FishController fishNode)
+    {
+        _fish.RemoveAll(spawn => spawn.Fish.Id == fishNode.Fish.Id);
+        fishNode.QueueFree();
+    }
 }
