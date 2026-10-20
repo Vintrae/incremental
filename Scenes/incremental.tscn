@@ -7,6 +7,8 @@
 [ext_resource type="Script" uid="uid://bydx7r3aq6xfl" path="res://Scripts/Services/SpawnService.cs" id="4_w1uux"]
 [ext_resource type="Script" uid="uid://bdad8kxlan2g3" path="res://Scripts/Services/UIService.cs" id="5_7qok5"]
 [ext_resource type="Resource" uid="uid://bfm4tpmeaufk4" path="res://Resources/cod.tres" id="5_w1uux"]
+[ext_resource type="Texture2D" uid="uid://8l84hvo8r35j" path="res://Art/World/Sea.png" id="6_7qok5"]
+[ext_resource type="Texture2D" uid="uid://ovlww66doff2" path="res://icon.svg" id="9_edpot"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_16owh"]
 radius = 53.08484
@@ -33,12 +35,13 @@ script = ExtResource("5_7qok5")
 
 [node name="Water" type="Node2D" parent="." unique_id=757683687]
 
-[node name="ColorRect" type="ColorRect" parent="Water" unique_id=1388832387]
+[node name="ColorRect" type="TextureRect" parent="Water" unique_id=453513937]
 z_index = 1
 offset_right = 720.0
 offset_bottom = 1280.0
 mouse_filter = 2
-color = Color(0.23529412, 0.43137255, 1, 0.3254902)
+texture = ExtResource("6_7qok5")
+stretch_mode = 1
 
 [node name="Entities" type="Node2D" parent="." unique_id=1418007889]
 
@@ -46,6 +49,7 @@ color = Color(0.23529412, 0.43137255, 1, 0.3254902)
 z_index = 2
 position = Vector2(350, 386)
 script = ExtResource("3_7kh8x")
+FPS = 0
 
 [node name="ShipSprite" type="Sprite2D" parent="Entities/Ship" unique_id=1468101175]
 texture_filter = 1
@@ -70,3 +74,10 @@ offset_top = 11.0
 offset_right = 672.0
 offset_bottom = 34.0
 text = "Score: "
+
+[node name="MenuButton" type="Button" parent="UI" unique_id=1081859551]
+offset_left = 533.0
+offset_top = 1052.0
+offset_right = 669.0
+offset_bottom = 1188.0
+icon = ExtResource("9_edpot")
