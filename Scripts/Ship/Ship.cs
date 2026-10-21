@@ -34,7 +34,7 @@ public partial class Ship : Node2D
         }
         if (@event is InputEventScreenDrag drag)
         {
-            _destination = (ScreenToWorld(drag.Position));
+            _destination = ScreenToWorld(drag.Position);
         }
     }
     // Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -47,7 +47,9 @@ public partial class SpawnService : Node
                 newFishNode.AddToGroup("fish");
 
                 // 5. Set its position and add it to the active game world tree
-                newFishNode.GlobalPosition = new Vector2(GD.RandRange(0, 720), GD.RandRange(0, 1280));
+                float margin_x = DisplayServer.WindowGetSize().X * 0.05f;
+                float margin_y = DisplayServer.WindowGetSize().Y * 0.05f;
+                newFishNode.GlobalPosition = new Vector2((float)GD.RandRange(margin_x, DisplayServer.WindowGetSize().X - margin_x), (float)GD.RandRange(margin_y, DisplayServer.WindowGetSize().Y - margin_y));
 
                 // Adds it to the current active scene root
                 GetTree().CurrentScene.AddChild(newFishNode);
