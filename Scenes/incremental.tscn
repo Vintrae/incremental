@@ -1,173 +1,174 @@
 [gd_scene format=3 uid="uid://b245c2j86ri2i"]
 
-[ext_resource type="Texture2D" uid="uid://c5khudsjcmfux" path="res://Art/Ship/boat.png" id="2_le6tf"]
-[ext_resource type="Script" uid="uid://dwuwllihyxbyb" path="res://Scripts/Ship/Ship.cs" id="3_7kh8x"]
-[ext_resource type="Script" uid="uid://d5bvyqup8efu" path="res://Scripts/Services/EconomyService.cs" id="3_hr7sg"]
-[ext_resource type="Script" uid="uid://cpi2rrcyfg3kp" path="res://Scripts/Services/FishingService.cs" id="3_w1uux"]
-[ext_resource type="Script" uid="uid://bydx7r3aq6xfl" path="res://Scripts/Services/SpawnService.cs" id="4_w1uux"]
-[ext_resource type="Script" uid="uid://bdad8kxlan2g3" path="res://Scripts/Services/UIService.cs" id="5_7qok5"]
-[ext_resource type="Resource" uid="uid://bfm4tpmeaufk4" path="res://Resources/cod.tres" id="5_w1uux"]
-[ext_resource type="Texture2D" uid="uid://cistaiilt1prw" path="res://Art/World/AnimatedWaterTile.bmp" id="6_7qok5"]
-[ext_resource type="Script" uid="uid://b8lr3lva5forf" path="res://WorldService.cs" id="6_fve0s"]
+[ext_resource type="Script" uid="uid://bydx7r3aq6xfl" path="res://Scripts/Services/SpawnService.cs" id="1_g8541"]
+[ext_resource type="Resource" uid="uid://bfm4tpmeaufk4" path="res://Resources/cod.tres" id="2_rdyq7"]
+[ext_resource type="Script" uid="uid://d5bvyqup8efu" path="res://Scripts/Services/EconomyService.cs" id="3_7qigx"]
+[ext_resource type="Script" uid="uid://cpi2rrcyfg3kp" path="res://Scripts/Services/FishingService.cs" id="4_4ued5"]
+[ext_resource type="Script" uid="uid://bdad8kxlan2g3" path="res://Scripts/Services/UIService.cs" id="5_f6if5"]
+[ext_resource type="Script" uid="uid://b8lr3lva5forf" path="res://WorldService.cs" id="6_x0mle"]
+[ext_resource type="Texture2D" uid="uid://cistaiilt1prw" path="res://Art/World/AnimatedWaterTile.bmp" id="7_qbbrk"]
+[ext_resource type="Script" uid="uid://dwuwllihyxbyb" path="res://Scripts/Ship/Ship.cs" id="8_qebvk"]
+[ext_resource type="Texture2D" uid="uid://c5khudsjcmfux" path="res://Art/Ship/boat.png" id="9_lql8x"]
+[ext_resource type="Texture2D" uid="uid://ovlww66doff2" path="res://icon.svg" id="10_hbojl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fve0s"]
-atlas = ExtResource("6_7qok5")
+atlas = ExtResource("7_qbbrk")
 region = Rect2(0, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vs26y"]
-atlas = ExtResource("6_7qok5")
+atlas = ExtResource("7_qbbrk")
 region = Rect2(40, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m3vfh"]
-atlas = ExtResource("6_7qok5")
+atlas = ExtResource("7_qbbrk")
 region = Rect2(80, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xaqk6"]
-atlas = ExtResource("6_7qok5")
+atlas = ExtResource("7_qbbrk")
 region = Rect2(120, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7yhre"]
-atlas = ExtResource("6_7qok5")
+atlas = ExtResource("7_qbbrk")
 region = Rect2(160, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ybx5c"]
-atlas = ExtResource("6_7qok5")
+atlas = ExtResource("7_qbbrk")
 region = Rect2(0, 40, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ixjgh"]
-atlas = ExtResource("6_7qok5")
+atlas = ExtResource("7_qbbrk")
 region = Rect2(40, 40, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_41gcd"]
-atlas = ExtResource("6_7qok5")
+atlas = ExtResource("7_qbbrk")
 region = Rect2(80, 40, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e320i"]
-atlas = ExtResource("6_7qok5")
+atlas = ExtResource("7_qbbrk")
 region = Rect2(120, 40, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dwxbs"]
-atlas = ExtResource("6_7qok5")
+atlas = ExtResource("7_qbbrk")
 region = Rect2(160, 40, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_htwc3"]
-atlas = ExtResource("6_7qok5")
+atlas = ExtResource("7_qbbrk")
 region = Rect2(0, 80, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b75bt"]
-atlas = ExtResource("6_7qok5")
+atlas = ExtResource("7_qbbrk")
 region = Rect2(40, 80, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4aatx"]
-atlas = ExtResource("6_7qok5")
+atlas = ExtResource("7_qbbrk")
 region = Rect2(80, 80, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ary1b"]
-atlas = ExtResource("6_7qok5")
+atlas = ExtResource("7_qbbrk")
 region = Rect2(120, 80, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s0y1u"]
-atlas = ExtResource("6_7qok5")
+atlas = ExtResource("7_qbbrk")
 region = Rect2(160, 80, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oxw3d"]
-atlas = ExtResource("6_7qok5")
+atlas = ExtResource("7_qbbrk")
 region = Rect2(0, 120, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x5q7m"]
-atlas = ExtResource("6_7qok5")
+atlas = ExtResource("7_qbbrk")
 region = Rect2(40, 120, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7tljq"]
-atlas = ExtResource("6_7qok5")
+atlas = ExtResource("7_qbbrk")
 region = Rect2(80, 120, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ic35r"]
-atlas = ExtResource("6_7qok5")
+atlas = ExtResource("7_qbbrk")
 region = Rect2(120, 120, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3b476"]
-atlas = ExtResource("6_7qok5")
+atlas = ExtResource("7_qbbrk")
 region = Rect2(160, 120, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kv22v"]
-atlas = ExtResource("6_7qok5")
+atlas = ExtResource("7_qbbrk")
 region = Rect2(0, 160, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_35udp"]
-atlas = ExtResource("6_7qok5")
+atlas = ExtResource("7_qbbrk")
 region = Rect2(40, 160, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u4j1m"]
-atlas = ExtResource("6_7qok5")
+atlas = ExtResource("7_qbbrk")
 region = Rect2(80, 160, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mdb3s"]
-atlas = ExtResource("6_7qok5")
+atlas = ExtResource("7_qbbrk")
 region = Rect2(120, 160, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_thmk5"]
-atlas = ExtResource("6_7qok5")
+atlas = ExtResource("7_qbbrk")
 region = Rect2(160, 160, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kokib"]
-atlas = ExtResource("6_7qok5")
+atlas = ExtResource("7_qbbrk")
 region = Rect2(0, 200, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nw4ag"]
-atlas = ExtResource("6_7qok5")
+atlas = ExtResource("7_qbbrk")
 region = Rect2(40, 200, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n0btw"]
-atlas = ExtResource("6_7qok5")
+atlas = ExtResource("7_qbbrk")
 region = Rect2(80, 200, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5kobs"]
-atlas = ExtResource("6_7qok5")
+atlas = ExtResource("7_qbbrk")
 region = Rect2(120, 200, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0qdd0"]
-atlas = ExtResource("6_7qok5")
+atlas = ExtResource("7_qbbrk")
 region = Rect2(160, 200, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bh1tl"]
-atlas = ExtResource("6_7qok5")
+atlas = ExtResource("7_qbbrk")
 region = Rect2(0, 240, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jnund"]
-atlas = ExtResource("6_7qok5")
+atlas = ExtResource("7_qbbrk")
 region = Rect2(40, 240, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4h10c"]
-atlas = ExtResource("6_7qok5")
+atlas = ExtResource("7_qbbrk")
 region = Rect2(80, 240, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m5gob"]
-atlas = ExtResource("6_7qok5")
+atlas = ExtResource("7_qbbrk")
 region = Rect2(120, 240, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mr0yl"]
-atlas = ExtResource("6_7qok5")
+atlas = ExtResource("7_qbbrk")
 region = Rect2(160, 240, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ikkyv"]
-atlas = ExtResource("6_7qok5")
+atlas = ExtResource("7_qbbrk")
 region = Rect2(0, 280, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_npxvb"]
-atlas = ExtResource("6_7qok5")
+atlas = ExtResource("7_qbbrk")
 region = Rect2(40, 280, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ljues"]
-atlas = ExtResource("6_7qok5")
+atlas = ExtResource("7_qbbrk")
 region = Rect2(80, 280, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_disf6"]
-atlas = ExtResource("6_7qok5")
+atlas = ExtResource("7_qbbrk")
 region = Rect2(120, 280, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xxeht"]
-atlas = ExtResource("6_7qok5")
+atlas = ExtResource("7_qbbrk")
 region = Rect2(160, 280, 40, 40)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_16owh"]
@@ -311,23 +312,23 @@ radius = 53.08484
 [node name="Services" type="Node" parent="." unique_id=714763137]
 
 [node name="SpawnService" type="Node2D" parent="Services" unique_id=1251282610]
-script = ExtResource("4_w1uux")
-fishPool = Array[Object]([ExtResource("5_w1uux")])
+script = ExtResource("1_g8541")
+fishPool = Array[Object]([ExtResource("2_rdyq7")])
 
 [node name="SpawnTimer" type="Timer" parent="Services/SpawnService" unique_id=337803992]
 autostart = true
 
 [node name="EconomyService" type="Node2D" parent="Services" unique_id=49563936]
-script = ExtResource("3_hr7sg")
+script = ExtResource("3_7qigx")
 
 [node name="FishingService" type="Node2D" parent="Services" unique_id=624556438]
-script = ExtResource("3_w1uux")
+script = ExtResource("4_4ued5")
 
 [node name="UIService" type="Node2D" parent="Services" unique_id=320603281]
-script = ExtResource("5_7qok5")
+script = ExtResource("5_f6if5")
 
 [node name="WorldService" type="Node2D" parent="Services" unique_id=1295118024]
-script = ExtResource("6_fve0s")
+script = ExtResource("6_x0mle")
 
 [node name="Water" type="Node2D" parent="." unique_id=757683687]
 
@@ -342,13 +343,13 @@ animation = &"Sea"
 [node name="Ship" type="CharacterBody2D" parent="Entities" unique_id=1724454598]
 z_index = 2
 position = Vector2(350, 386)
-script = ExtResource("3_7kh8x")
+script = ExtResource("8_qebvk")
 FPS = 0
 
 [node name="ShipSprite" type="Sprite2D" parent="Entities/Ship" unique_id=1468101175]
 texture_filter = 1
 scale = Vector2(3, 3)
-texture = ExtResource("2_le6tf")
+texture = ExtResource("9_lql8x")
 
 [node name="ShipCollision" type="CollisionPolygon2D" parent="Entities/Ship" unique_id=1015695836]
 polygon = PackedVector2Array(-26, -27, -1, -52, 23, -27, 23, 37, -26, 37)
@@ -374,4 +375,4 @@ offset_left = 533.0
 offset_top = 1052.0
 offset_right = 669.0
 offset_bottom = 1188.0
-icon = ExtResource("9_edpot")
+icon = ExtResource("10_hbojl")
