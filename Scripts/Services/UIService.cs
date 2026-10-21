@@ -16,7 +16,7 @@ public partial class UIService : Node
         _economyService.ScoreChanged += OnScoreChanged;
         OnScoreChanged(_economyService.Score);
 
-        Button menuButton = GetNode<Button>("../../UI/MenuButton");
+        Button menuButton = GetNode<Button>("../../UI/ColorRect/MenuButton");
         menuButton.Pressed += OnMenuButtonPress;
 }
 
