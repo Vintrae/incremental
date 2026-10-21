@@ -1,9 +1,12 @@
 using Godot;
+using System;
 
 public partial class UIService : Node
 {
     private EconomyService _economyService;
     private Label _scoreLabel;
+    private Control _menuControl;
+    private Boolean _isMenuButtonPressed = false;
 
     public override void _Ready()
     {
@@ -12,7 +15,10 @@ public partial class UIService : Node
 
         _economyService.ScoreChanged += OnScoreChanged;
         OnScoreChanged(_economyService.Score);
-    }
+
+        Button menuButton = GetNode<Button>("../../UI/MenuButton");
+        menuButton.Pressed += OnMenuButtonPress;
+}
 
     private void OnScoreChanged(double score)
     {
@@ -23,5 +29,31 @@ public partial class UIService : Node
     {
         if (GodotObject.IsInstanceValid(_economyService))
             _economyService.ScoreChanged -= OnScoreChanged;
+    }
+
+    private void OnMenuButtonPress()
+    {
+        if (!_isMenuButtonPressed)
+        {
+            GD.Print("Menu button pressed. Loading menu scene...");
+
+            var menu = GD.Load<PackedScene>("res://Scenes/Menu.tscn");
+            _menuControl = menu.Instantiate<Control>();
+
+            GetTree().CurrentScene.AddChild(_menuControl);
+            _isMenuButtonPressed = true;
+        }
+        else
+        {
+            GD.Print("Menu button pressed again. Removing menu...");
+
+            if (GodotObject.IsInstanceValid(_menuControl))
+            {
+                _menuControl.QueueFree();
+                _menuControl = null;
+            }
+
+            _isMenuButtonPressed = false;
+        }
     }
 }

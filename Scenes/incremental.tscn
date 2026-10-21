@@ -343,6 +343,7 @@ animation = &"Sea"
 z_index = 2
 position = Vector2(350, 386)
 script = ExtResource("3_7kh8x")
+FPS = 0
 
 [node name="ShipSprite" type="Sprite2D" parent="Entities/Ship" unique_id=1468101175]
 texture_filter = 1
@@ -367,3 +368,10 @@ offset_top = 11.0
 offset_right = 672.0
 offset_bottom = 34.0
 text = "Score: "
+
+[node name="MenuButton" type="Button" parent="UI" unique_id=1081859551]
+offset_left = 533.0
+offset_top = 1052.0
+offset_right = 669.0
+offset_bottom = 1188.0
+icon = ExtResource("9_edpot")

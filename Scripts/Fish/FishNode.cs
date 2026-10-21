@@ -25,7 +25,8 @@ public partial class FishNode : Sprite2D, ICatchable, IValuable
 
     public override void _Ready()
     {
-        ZIndex = 0;
+        ZIndex = 1;
+        Modulate = new Color(1, 1, 1, 0.6f);
         // Create an Area2D for fishing interactions.
         var catchArea = new Area2D { Name = "CatchArea" };
         AddChild(catchArea);
