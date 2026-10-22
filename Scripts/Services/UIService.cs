@@ -6,6 +6,9 @@ public partial class UIService : Node
     private EconomyService _economyService;
     private Label _scoreLabel;
     private Control _menuControl;
+    private Button _menuButton;
+    private Texture2D MenuButtonIcon = GD.Load<Texture2D>("res://Art/UI/MenuButton.png");
+    private Texture2D MenuButtonPressedIcon = GD.Load<Texture2D>("res://Art/UI/MenuButtonPressed.png");
     private Boolean _isMenuButtonPressed = false;
 
     public override void _Ready()
@@ -16,8 +19,8 @@ public partial class UIService : Node
         _economyService.ScoreChanged += OnScoreChanged;
         OnScoreChanged(_economyService.Score);
 
-        Button menuButton = GetNode<Button>("../../UI/ColorRect/MenuButton");
-        menuButton.Pressed += OnMenuButtonPress;
+        _menuButton = GetNode<Button>("../../UI/BottomBar/MenuButton");
+        _menuButton.Pressed += OnMenuButtonPress;
 }
 
     private void OnScoreChanged(double score)
@@ -41,6 +44,7 @@ public partial class UIService : Node
             _menuControl = menu.Instantiate<Control>();
 
             GetTree().CurrentScene.AddChild(_menuControl);
+            _menuButton.Icon = MenuButtonPressedIcon;
             _isMenuButtonPressed = true;
         }
         else
@@ -52,7 +56,8 @@ public partial class UIService : Node
                 _menuControl.QueueFree();
                 _menuControl = null;
             }
-
+            
+            _menuButton.Icon = MenuButtonIcon;
             _isMenuButtonPressed = false;
         }
     }
