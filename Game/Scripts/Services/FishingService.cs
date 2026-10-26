@@ -53,7 +53,7 @@ public partial class FishingService : Node
 			}
 
 			float progress = _progressByEntity[entity];
-			progress = Mathf.Min(1f, progress + (float)delta / catchable.CatchDifficulty);
+			progress = CatchProgress.Advance(progress, (float)delta, catchable.CatchDifficulty);
 			_progressByEntity[entity] = progress;
 
 			if (progress >= 1f)

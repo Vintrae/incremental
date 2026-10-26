@@ -8,7 +8,7 @@ public partial class EconomyService : Node
     private FishingService _fishingService;
     private const string ResourcesPath = "res://Game/Resources/Game";
 
-    private Dictionary<string, int> ResourceAmounts { get; } = new Dictionary<string, int>();
+    private ResourceInventory _inventory = new();
     private Dictionary<string, Resource> ResourceDefinitions { get; } = new Dictionary<string, Resource>();
     private Dictionary<string, string> ResourceNamesByPath { get; } = new Dictionary<string, string>();
 
@@ -45,7 +45,7 @@ public partial class EconomyService : Node
                 continue;
             }
 
-            ResourceAmounts.TryAdd(resourceName, 0);
+            _inventory.Register(resourceName);
             ResourceDefinitions.TryAdd(resourceName, resourceDefinition);
             ResourceNamesByPath.TryAdd(resourceDefinition.ResourcePath, resourceName);
         }
@@ -58,7 +58,7 @@ public partial class EconomyService : Node
 
     public IReadOnlyDictionary<string, int> GetResourceInventory()
     {
-        return ResourceAmounts;
+        return _inventory.Amounts;
     }
 
     public Texture2D GetResourceIcon(string resourceName)
@@ -71,12 +71,12 @@ public partial class EconomyService : Node
 
     public int GetResourceTypeCount()
     {
-        return ResourceAmounts.Count;
+        return _inventory.ResourceTypeCount;
     }
 
     public int GetResourceAmount(string resourceName)
     {
-        return ResourceAmounts.TryGetValue(resourceName, out int amount) ? amount : 0;
+        return _inventory.GetAmount(resourceName);
     }
 
     public void AddResource(string resourceName, int amount)
@@ -87,8 +87,7 @@ public partial class EconomyService : Node
             return;
         }
 
-        if (ResourceAmounts.ContainsKey(resourceName))
-            ResourceAmounts[resourceName] += amount;
+        _inventory.Add(resourceName, amount);
     }
 
     public bool SpendResource(string resourceName, int amount)
@@ -99,9 +98,10 @@ public partial class EconomyService : Node
             return false;
         }
         
-        if (!ResourceAmounts.TryGetValue(resourceName, out int currentAmount))
+        int currentAmount = _inventory.GetAmount(resourceName);
+        if (!_inventory.Amounts.ContainsKey(resourceName))
         {
-            GD.PrintErr($"Not enough of resource '{resourceName}' to spend. Available: {ResourceAmounts[resourceName]}, Attempted to spend: {amount}");
+            GD.PrintErr($"Not enough of resource '{resourceName}' to spend. Available: 0, Attempted to spend: {amount}");
             return false;
         }
         
@@ -111,8 +111,7 @@ public partial class EconomyService : Node
             return false;
         }
         
-        ResourceAmounts[resourceName] = currentAmount - amount;
-        return true;
+        return _inventory.TrySpend(resourceName, amount);
     }
 
     private void OnEntityCaught(Node entity)

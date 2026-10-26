@@ -33,7 +33,11 @@ public partial class SpawnService : Node
                 //var rng = new RandomUtil();
                 
                 // 1. Pick a random fish from the pool based on their weights
-                FishData targetFish = WeightedRandom.PickByWeight(fishPool);
+                FishData targetFish = FishSpawnSelector.Select(
+                    fishPool,
+                    fish => fish.IsUnlocked,
+                    fish => fish.SpawnWeight);
+                if (targetFish == null) return null;
 
                 // 2. Load the reusable FishNode scene template
                 var fishSceneBlueprint = GD.Load<PackedScene>("res://Game/Scenes/FishNode.tscn");
