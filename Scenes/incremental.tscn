@@ -13,6 +13,7 @@
 [ext_resource type="StyleBox" uid="uid://cmnqpd5sifaaa" path="res://Resources/Style/button.tres" id="10_rdyq7"]
 [ext_resource type="Texture2D" uid="uid://bge5rxqbiv384" path="res://Art/UI/MenuButton.png" id="11_rdyq7"]
 [ext_resource type="Texture2D" uid="uid://c1mojofnafjce" path="res://Art/UI/TopBar.png" id="13_4ued5"]
+[ext_resource type="Texture2D" path="res://Art/UI/CloseButton.png" id="14_close"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fve0s"]
 atlas = ExtResource("7_qbbrk")
@@ -396,6 +397,23 @@ theme_override_styles/hover = ExtResource("10_rdyq7")
 theme_override_styles/disabled = ExtResource("10_rdyq7")
 theme_override_styles/focus = ExtResource("10_rdyq7")
 icon = ExtResource("11_rdyq7")
+icon_alignment = 1
+
+[node name="CloseButton" type="Button" parent="UI/BottomBar" unique_id=1592804344]
+visible = false
+z_index = 10
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 0
+offset_left = 399.0
+offset_top = 14.0
+offset_right = 463.0
+offset_bottom = 78.0
+theme_override_styles/normal = ExtResource("10_rdyq7")
+theme_override_styles/pressed = ExtResource("10_rdyq7")
+theme_override_styles/hover = ExtResource("10_rdyq7")
+theme_override_styles/disabled = ExtResource("10_rdyq7")
+theme_override_styles/focus = ExtResource("10_rdyq7")
+icon = ExtResource("14_close")
 icon_alignment = 1
 
 [node name="TopBar" type="TextureRect" parent="UI" unique_id=225463612]

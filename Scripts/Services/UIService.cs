@@ -8,10 +8,13 @@ public partial class UIService : Node
     private Control _menuControl;
     private Control _inventoryControl;
     private Button _menuButton;
+    private Button _closeButton;
     private Texture2D MenuButtonIcon = GD.Load<Texture2D>("res://Art/UI/MenuButton.png");
     private Texture2D MenuButtonPressedIcon = GD.Load<Texture2D>("res://Art/UI/MenuButtonPressed.png");
     private Texture2D InventoryButtonIcon = GD.Load<Texture2D>("res://Art/UI/InventoryButton.png");
     private Texture2D InventoryButtonPressedIcon = GD.Load<Texture2D>("res://Art/UI/InventoryButtonPressed.png");
+    private Texture2D CloseButtonIcon = GD.Load<Texture2D>("res://Art/UI/CloseButton.png");
+    private Texture2D CloseButtonPressedIcon = GD.Load<Texture2D>("res://Art/UI/CloseButtonPressed.png");
     private Boolean _isMenuButtonPressed = false;
 
     public override void _Ready()
@@ -24,7 +27,12 @@ public partial class UIService : Node
 
         _menuButton = GetNode<Button>("../../UI/BottomBar/MenuButton");
         _menuButton.Pressed += OnMenuButtonPress;
-}
+
+        _closeButton = GetNode<Button>("../../UI/BottomBar/CloseButton");
+        _closeButton.ButtonDown += OnCloseButtonDown;
+        _closeButton.ButtonUp += OnCloseButtonUp;
+        _closeButton.Pressed += CloseAllMenus;
+    }
 
     private void OnScoreChanged(double score)
     {
@@ -54,21 +62,7 @@ public partial class UIService : Node
         else
         {
             GD.Print("Menu button pressed again. Removing menu...");
-
-            if (GodotObject.IsInstanceValid(_menuControl))
-            {
-                _menuControl.QueueFree();
-                _menuControl = null;
-            }
-
-            if (GodotObject.IsInstanceValid(_inventoryControl))
-            {
-                _inventoryControl.QueueFree();
-                _inventoryControl = null;
-            }
-            
-            _menuButton.Icon = MenuButtonIcon;
-            _isMenuButtonPressed = false;
+            CloseAllMenus();
         }
     }
 
@@ -93,6 +87,7 @@ public partial class UIService : Node
 
         _inventoryControl = inventoryControl;
         GetNode<Node2D>("../../UI").AddChild(_inventoryControl);
+        EnsureCloseButton();
     }
 
     private void ShowMenu()
@@ -115,6 +110,7 @@ public partial class UIService : Node
         inventoryButton.Pressed += OnInventoryButtonPress;
         _menuButton.Icon = MenuButtonPressedIcon;
         _isMenuButtonPressed = true;
+        EnsureCloseButton();
     }
 
     private void OnInventoryButtonDown()
@@ -131,5 +127,47 @@ public partial class UIService : Node
         {
             _menuControl.GetNode<Button>("PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/Inventory").Icon = InventoryButtonIcon;
         }
+    }
+
+    private void EnsureCloseButton()
+    {
+        if (_closeButton.GetParent() == null)
+            _menuButton.GetParent().AddChild(_closeButton);
+
+        _closeButton.Icon = CloseButtonIcon;
+        _closeButton.Visible = true;
+    }
+
+    private void OnCloseButtonDown()
+    {
+        if (GodotObject.IsInstanceValid(_closeButton))
+            _closeButton.Icon = CloseButtonPressedIcon;
+    }
+
+    private void OnCloseButtonUp()
+    {
+        if (GodotObject.IsInstanceValid(_closeButton))
+            _closeButton.Icon = CloseButtonIcon;
+    }
+
+    private void CloseAllMenus()
+    {
+        if (GodotObject.IsInstanceValid(_menuControl))
+        {
+            _menuControl.QueueFree();
+            _menuControl = null;
+        }
+
+        if (GodotObject.IsInstanceValid(_inventoryControl))
+        {
+            _inventoryControl.QueueFree();
+            _inventoryControl = null;
+        }
+
+        _closeButton.Visible = false;
+        _closeButton.GetParent()?.RemoveChild(_closeButton);
+
+        _menuButton.Icon = MenuButtonIcon;
+        _isMenuButtonPressed = false;
     }
 }
