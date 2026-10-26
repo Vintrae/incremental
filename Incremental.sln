@@ -2,6 +2,8 @@
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Incremental", "Incremental.csproj", "{B88C9843-7D75-4BB6-AD5D-B764F39AF62C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Incremental.Tests", "Tests\Incremental.Tests.csproj", "{7E2DF5A6-3566-4A3D-B4B4-F178DFA07C69}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 	Debug|Any CPU = Debug|Any CPU
@@ -15,5 +17,11 @@ Global
 		{B88C9843-7D75-4BB6-AD5D-B764F39AF62C}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
 		{B88C9843-7D75-4BB6-AD5D-B764F39AF62C}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
 		{B88C9843-7D75-4BB6-AD5D-B764F39AF62C}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+		{7E2DF5A6-3566-4A3D-B4B4-F178DFA07C69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E2DF5A6-3566-4A3D-B4B4-F178DFA07C69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E2DF5A6-3566-4A3D-B4B4-F178DFA07C69}.ExportDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E2DF5A6-3566-4A3D-B4B4-F178DFA07C69}.ExportDebug|Any CPU.Build.0 = Debug|Any CPU
+		{7E2DF5A6-3566-4A3D-B4B4-F178DFA07C69}.ExportRelease|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E2DF5A6-3566-4A3D-B4B4-F178DFA07C69}.ExportRelease|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 EndGlobal
