@@ -1,11 +1,12 @@
 // FishNode.cs
 using Godot;
 
-public partial class FishNode : Sprite2D, ICatchable, IValuable
+public partial class FishNode : Sprite2D, ICatchable, IValuable, IInventoryResourceDrop
 {
     private FishData _data;
 
     public FishData Data => _data;
+    public Resource InventoryResource => _data;
     public double BaseValue => _data?.BaseValue ?? 0.0;
     public float CatchDifficulty => _data?.CatchDifficulty ?? 1.0f;
 

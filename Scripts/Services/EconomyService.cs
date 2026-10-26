@@ -9,6 +9,8 @@ public partial class EconomyService : Node
     private const string ResourcesPath = "res://Resources/Game";
 
     private Dictionary<string, int> ResourceAmounts { get; } = new Dictionary<string, int>();
+    private Dictionary<string, Resource> ResourceDefinitions { get; } = new Dictionary<string, Resource>();
+    private Dictionary<string, string> ResourceNamesByPath { get; } = new Dictionary<string, string>();
 
     public double Score { get; private set; }
     public event Action<double> ScoreChanged;
@@ -35,13 +37,36 @@ public partial class EconomyService : Node
             if (!file.EndsWith(".tres")) continue;
 
             string resourceName = Path.GetFileNameWithoutExtension(file);
+            var resourcePath = $"{path}/{file}";
+            var resourceDefinition = GD.Load<Resource>(resourcePath);
+            if (resourceDefinition == null)
+            {
+                GD.PrintErr($"Failed to load inventory resource definition: {resourcePath}");
+                continue;
+            }
+
             ResourceAmounts.TryAdd(resourceName, 0);
+            ResourceDefinitions.TryAdd(resourceName, resourceDefinition);
+            ResourceNamesByPath.TryAdd(resourceDefinition.ResourcePath, resourceName);
         }
 
         foreach (string subdirectory in directory.GetDirectories())
         {
             LoadResources($"{path}/{subdirectory}");
         }
+    }
+
+    public IReadOnlyDictionary<string, int> GetResourceInventory()
+    {
+        return ResourceAmounts;
+    }
+
+    public Texture2D GetResourceIcon(string resourceName)
+    {
+        return ResourceDefinitions.TryGetValue(resourceName, out Resource definition) &&
+            definition is IInventoryResourceDefinition inventoryResource
+                ? inventoryResource.InventoryIcon
+                : null;
     }
 
     public int GetResourceTypeCount()
@@ -92,6 +117,14 @@ public partial class EconomyService : Node
 
     private void OnEntityCaught(Node entity)
     {
+        if (entity is IInventoryResourceDrop resourceDrop && resourceDrop.InventoryResource != null)
+        {
+            if (ResourceNamesByPath.TryGetValue(resourceDrop.InventoryResource.ResourcePath, out string resourceName))
+                AddResource(resourceName, 1);
+            else
+                GD.PrintErr($"Caught resource is not registered in the inventory: {resourceDrop.InventoryResource.ResourcePath}");
+        }
+
         if (entity is IValuable valuable)
         {
             Score += valuable.BaseValue;

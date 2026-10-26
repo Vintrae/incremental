@@ -5,12 +5,14 @@ using System.Collections.Generic;
 public partial class FishingService : Node
 {
 	private readonly Dictionary<Node, float> _progressByEntity = new();
+	private EconomyService _economyService;
 
 	public event Action<Node> EntityCaught;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		_economyService = GetNode<EconomyService>("../../Services/EconomyService");
 		var fishingArea = GetNode<Area2D>("../../Entities/Ship/FishingArea");
 		fishingArea.AreaEntered += OnFishingAreaEntered;
 		fishingArea.AreaExited += OnFishingAreaExited;

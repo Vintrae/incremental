@@ -4,33 +4,16 @@
 
 [node name="Menu" type="Control" unique_id=1824030726]
 z_index = 10
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 0
+offset_right = 720.0
+offset_bottom = 1280.0
 mouse_filter = 2
 script = ExtResource("1_h02av")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1056467661]
 layout_mode = 0
-offset_left = 232.0
-offset_top = 522.0
-offset_right = 488.0
-offset_bottom = 628.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=104879880]
-layout_mode = 2
-
-[node name="Inventory" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1255684932]
-layout_mode = 2
-text = "Inventory"
-
-[node name="Sell" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1706292055]
-layout_mode = 2
-text = "Sell"
-
-[node name="Upgrades" type="Button" parent="PanelContainer/VBoxContainer" unique_id=18446680]
-layout_mode = 2
-text = "Upgrades"
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 48.0
+offset_bottom = -96.0
