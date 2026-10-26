@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://cnvp8fr72l5bw"]
-
-[ext_resource type="Script" uid="uid://co6eyk7vg57yn" path="res://Scripts/Fish/FishNode.cs" id="1_jvfhh"]
-
-[node name="FishNode" type="Sprite2D" unique_id=38873841]
-script = ExtResource("1_jvfhh")

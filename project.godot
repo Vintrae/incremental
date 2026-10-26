@@ -13,7 +13,7 @@ config_version=5
 config/name="Incremental"
 run/main_scene="uid://b245c2j86ri2i"
 config/features=PackedStringArray("4.7", "C#", "Mobile")
-config/icon="res://icon.svg"
+config/icon="res://Game/icon.svg"
 
 [display]
 
