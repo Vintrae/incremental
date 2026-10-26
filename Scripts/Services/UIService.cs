@@ -43,7 +43,7 @@ public partial class UIService : Node
             var menu = GD.Load<PackedScene>("res://Scenes/Menu.tscn");
             _menuControl = menu.Instantiate<Control>();
 
-            GetTree().CurrentScene.AddChild(_menuControl);
+            GetNode<Node2D>("../../UI").AddChild(_menuControl);
             _menuButton.Icon = MenuButtonPressedIcon;
             _isMenuButtonPressed = true;
         }

@@ -1,27 +1,32 @@
 using Godot;
-using System;
-using System.Runtime.CompilerServices;
 
 public partial class Ship : Node2D
 {
+    private const float ShipFootprintMargin = 0.65f;
+
     private Vector2 _destination;
     private bool _hasDestination;
-    private Area2D _fishingArea;
+    private Sprite2D _shipSprite;
+    private Node2D _uiRoot;
+    private TextureRect _topBar;
+    private TextureRect _bottomBar;
 
     [Export]
     public float Speed = 500f;
 
     [Export]
     public int FPS = 30;
-    private float interval = 0f;
-    private float intervalMax = 0f;
 
-    // Called when the node enters the scene tree for the first time.
+    private float interval;
+    private float intervalMax;
+
     public override void _Ready()
     {
-        _destination = Position;
-        _fishingArea = GetNode<Area2D>("FishingArea");
-
+        _destination = GlobalPosition;
+        _shipSprite = GetNode<Sprite2D>("ShipSprite");
+        _uiRoot = GetNode<Node2D>("../../UI");
+        _topBar = GetNode<TextureRect>("../../UI/TopBar");
+        _bottomBar = GetNode<TextureRect>("../../UI/BottomBar");
         intervalMax = 1f / FPS;
     }
 
@@ -29,15 +34,25 @@ public partial class Ship : Node2D
     {
         if (@event is InputEventScreenTouch touch && touch.Pressed)
         {
-            _destination = touch.Position;
-            _hasDestination = true;
+            SetDestination(touch.Position);
         }
-        if (@event is InputEventScreenDrag drag)
+        else if (@event is InputEventScreenDrag drag)
         {
-            _destination = ScreenToWorld(drag.Position);
+            SetDestination(drag.Position);
+        }
+        else if (@event is InputEventMouseButton mouseButton &&
+                 mouseButton.ButtonIndex == MouseButton.Left &&
+                 mouseButton.Pressed)
+        {
+            SetDestination(mouseButton.Position);
+        }
+        else if (@event is InputEventMouseMotion mouseMotion &&
+                 (mouseMotion.ButtonMask & MouseButtonMask.Left) != 0)
+        {
+            SetDestination(mouseMotion.Position);
         }
     }
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
+
     public override void _Process(double delta)
     {
         interval += (float)delta;
@@ -45,26 +60,88 @@ public partial class Ship : Node2D
         if (!_hasDestination)
             return;
 
-        if (FPS == 0f || interval >= intervalMax)
+        if (FPS == 0 || interval >= intervalMax)
         {
-            float distance = Position.DistanceTo(_destination);
-
+            float distance = GlobalPosition.DistanceTo(_destination);
             if (distance < 2f)
             {
-                Position = _destination;
+                GlobalPosition = _destination;
                 _hasDestination = false;
                 return;
             }
 
             Vector2 direction = _destination - GlobalPosition;
-            Rotation = direction.Angle() + Mathf.Pi / 2;
+            GlobalRotation = direction.Angle() + Mathf.Pi / 2;
             interval = 0f;
         }
 
-        Position = Position.MoveToward(_destination, Speed * (float)delta);
+        GlobalPosition = GlobalPosition.MoveToward(_destination, Speed * (float)delta);
     }
-    private Vector2 ScreenToWorld(Vector2 screenPosition)
+
+    private void SetDestination(Vector2 viewportPosition)
     {
-        return GetViewport().GetCanvasTransform().AffineInverse() * screenPosition;
+        Transform2D canvasTransform = GetViewport().GetCanvasTransform();
+        Vector2 worldPosition = canvasTransform.AffineInverse() * viewportPosition;
+        if (IsOverUi(_uiRoot, worldPosition))
+            return;
+
+        Rect2 topBarBounds = _topBar.GetGlobalRect();
+        Rect2 bottomBarBounds = _bottomBar.GetGlobalRect();
+        float shipRadius = GetShipFootprintRadius();
+
+        float minX = Mathf.Max(topBarBounds.Position.X, bottomBarBounds.Position.X) + shipRadius;
+        float maxX = Mathf.Min(topBarBounds.End.X, bottomBarBounds.End.X) - shipRadius;
+        float minY = topBarBounds.End.Y + shipRadius;
+        float maxY = bottomBarBounds.Position.Y - shipRadius;
+
+        _destination = new Vector2(
+            ClampAxis(worldPosition.X, minX, maxX),
+            ClampAxis(worldPosition.Y, minY, maxY));
+        _hasDestination = true;
+    }
+
+    private static bool IsOverUi(Node node, Vector2 worldPosition)
+    {
+        if (node is Control control &&
+            control.IsVisibleInTree() &&
+            control.MouseFilter != Control.MouseFilterEnum.Ignore &&
+            control.GetGlobalRect().HasPoint(worldPosition))
+        {
+            return true;
+        }
+
+        foreach (Node child in node.GetChildren())
+        {
+            if (IsOverUi(child, worldPosition))
+                return true;
+        }
+
+        return false;
+    }
+
+    private float GetShipFootprintRadius()
+    {
+        Rect2 spriteRect = _shipSprite.GetRect();
+        Vector2[] corners =
+        {
+            spriteRect.Position,
+            new Vector2(spriteRect.End.X, spriteRect.Position.Y),
+            new Vector2(spriteRect.Position.X, spriteRect.End.Y),
+            spriteRect.End
+        };
+
+        float radius = 0f;
+        foreach (Vector2 corner in corners)
+            radius = Mathf.Max(radius, (_shipSprite.GlobalTransform * corner - GlobalPosition).Length());
+
+        return radius * ShipFootprintMargin;
+    }
+
+    private static float ClampAxis(float value, float min, float max)
+    {
+        if (min > max)
+            return (min + max) / 2f;
+
+        return Mathf.Clamp(value, min, max);
     }
 }
