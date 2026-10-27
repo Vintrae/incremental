@@ -1,3 +1,5 @@
+using Incremental.Game.Scripts.Interfaces;
+using Incremental.Game.Scripts.Utils;
 using Xunit;
 
 public class WeightedRandomTests

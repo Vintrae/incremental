@@ -1,4 +1,5 @@
 using Godot;
+using Incremental.Game.Scripts.Upgrades;
 
 namespace Incremental.Game.Scripts.Ship;
 
@@ -12,8 +13,10 @@ public partial class Ship : Node2D
     private Node2D _uiRoot;
     private TextureRect _topBar;
     private TextureRect _bottomBar;
+    public UpgradeManager Upgrades { get; } = new();
 
     [Export]
+    [Upgradable(UpgradeIds.ShipSpeed, 1000f, 10)]
     public float Speed = 500f;
 
     [Export]
@@ -24,6 +27,7 @@ public partial class Ship : Node2D
 
     public override void _Ready()
     {
+        Upgrades.Register(this);
         _destination = GlobalPosition;
         _shipSprite = GetNode<Sprite2D>("ShipSprite");
         _uiRoot = GetNode<Node2D>("../../UI");

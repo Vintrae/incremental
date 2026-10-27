@@ -8,4 +8,13 @@
   <ItemGroup>
     <Compile Remove="Tests/**/*.cs" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Game\Resources\Game\cod.tres" />
+    <None Include="Game\Resources\Style\button.tres" />
+    <None Include="Game\Scenes\FishNode.tscn" />
+    <None Include="Game\Scenes\incremental.tscn" />
+    <None Include="Game\Scenes\InventoryMenu.tscn" />
+    <None Include="Game\Scenes\Menu.tscn" />
+  </ItemGroup>
 </Project>
