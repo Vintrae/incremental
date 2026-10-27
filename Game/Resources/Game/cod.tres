@@ -9,4 +9,6 @@ FishName = "Cod"
 BaseValue = 1.0
 CatchDifficulty = 3.0
 Icon = ExtResource("1_arspk")
+SpawnWeight = 100
+IsUnlocked = true
 metadata/_custom_type_script = "uid://ddxurjofo3yl5"

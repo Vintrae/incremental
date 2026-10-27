@@ -14,8 +14,8 @@ public partial class SpawnService : Node
             case SpawnCategory.Fish:
                 if (fishPool == null || fishPool.Length == 0) return null;
                 FishData targetFish = System.Array.Find(fishPool, fish => fish.FishName.ToLower() == entityName.ToLower());
-                if (!targetFish.IsUnlocked) return null;
-                return null;
+                if (targetFish == null || !targetFish.IsUnlocked) return null;
+                return targetFish;
 
 
             // Add other categories here
