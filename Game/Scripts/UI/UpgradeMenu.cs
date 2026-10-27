@@ -1,7 +1,9 @@
 using Godot;
-using System;
+using Incremental.Game.Scripts.Services;
 
-public partial class UpgradeMenuButton : Button
+namespace Incremental.Game.Scripts.UI;
+
+public partial class UpgradeMenu : Control
 {
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()

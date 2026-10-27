@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 
+namespace Incremental.Game.Scripts.Services;
+
 public sealed class ResourceInventory
 {
     private readonly Dictionary<string, int> _amounts = new();

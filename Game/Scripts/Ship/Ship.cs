@@ -1,5 +1,7 @@
 using Godot;
 
+namespace Incremental.Game.Scripts.Ship;
+
 public partial class Ship : Node2D
 {
     private const float ShipFootprintMargin = 0.65f;

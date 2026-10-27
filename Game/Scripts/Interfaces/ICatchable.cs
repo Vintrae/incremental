@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+namespace Incremental.Game.Scripts.Interfaces;
 
 public interface ICatchable
 {

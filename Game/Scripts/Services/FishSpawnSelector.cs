@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Incremental.Game.Scripts.Utils;
+
+namespace Incremental.Game.Scripts.Services;
 
 public static class FishSpawnSelector
 {

@@ -1,6 +1,8 @@
 // RandomUtil.cs
 using System;
 
+namespace Incremental.Game.Scripts.Utils;
+
 public class RandomUtil
 {
     private readonly Random _rng;

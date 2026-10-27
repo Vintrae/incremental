@@ -1,5 +1,8 @@
 using Godot;
 using System.Collections.Generic;
+using Incremental.Game.Scripts.Services;
+
+namespace Incremental.Game.Scripts.UI;
 
 public partial class InventoryMenu : Control
 {

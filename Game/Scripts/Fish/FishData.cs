@@ -1,5 +1,8 @@
 // FishData.cs
 using Godot;
+using Incremental.Game.Scripts.Interfaces;
+
+namespace Incremental.Game.Scripts.Fish;
 
 public enum BiomeType
 {

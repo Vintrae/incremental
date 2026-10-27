@@ -1,3 +1,5 @@
+namespace Incremental.Game.Scripts.Services;
+
 public static class CatchProgress
 {
     public static float Advance(float progress, float delta, float catchDifficulty)

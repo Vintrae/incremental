@@ -1,6 +1,8 @@
 using Godot;
 using System;
 
+namespace Incremental.Game.Scripts.Services;
+
 public partial class UIService : Node
 {
     private EconomyService _economyService;

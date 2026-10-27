@@ -1,4 +1,7 @@
 using Godot;
+using Incremental.Game.Scripts.Fish;
+
+namespace Incremental.Game.Scripts.Services;
 
 public partial class SpawnService : Node
 {

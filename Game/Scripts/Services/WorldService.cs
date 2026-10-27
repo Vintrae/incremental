@@ -1,6 +1,8 @@
 using Godot;
 using System;
 
+namespace Incremental.Game.Scripts.Services;
+
 public partial class WorldService : Node2D
 {
 	private AnimatedSprite2D _waterAnimation;

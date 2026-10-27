@@ -1,7 +1,10 @@
 // WeightedRandom.cs
+using Incremental.Game.Scripts.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
+namespace Incremental.Game.Scripts.Utils;
 
 public static class WeightedRandom
 {

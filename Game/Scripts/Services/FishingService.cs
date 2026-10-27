@@ -1,6 +1,9 @@
 using Godot;
+using Incremental.Game.Scripts.Interfaces;
 using System;
 using System.Collections.Generic;
+
+namespace Incremental.Game.Scripts.Services;
 
 public partial class FishingService : Node
 {

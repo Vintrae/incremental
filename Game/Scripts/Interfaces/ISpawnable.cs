@@ -1,4 +1,7 @@
 using System.Collections.Generic;
+using Incremental.Game.Scripts.Utils;
+
+namespace Incremental.Game.Scripts.Interfaces;
 
 public interface ISpawnable
 {

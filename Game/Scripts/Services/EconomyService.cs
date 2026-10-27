@@ -1,7 +1,10 @@
 using Godot;
+using Incremental.Game.Scripts.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.IO;
+
+namespace Incremental.Game.Scripts.Services;
 
 public partial class EconomyService : Node
 {
