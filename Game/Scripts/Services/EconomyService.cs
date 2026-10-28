@@ -6,7 +6,13 @@ using System.IO;
 
 namespace Incremental.Game.Scripts.Services;
 
-public partial class EconomyService : Node
+public interface IScoreWallet
+{
+    double Score { get; }
+    bool TrySpendScore(double amount);
+}
+
+public partial class EconomyService : Node, IScoreWallet
 {
     private FishingService _fishingService;
     private const string ResourcesPath = "res://Game/Resources/Game";
@@ -93,6 +99,34 @@ public partial class EconomyService : Node
         _inventory.Add(resourceName, amount);
     }
 
+    public bool TrySpendScore(double amount)
+    {
+        if (!double.IsFinite(amount) || amount <= 0d)
+        {
+            GD.PrintErr($"Attempted to spend an invalid amount of score: {amount}");
+            return false;
+        }
+
+        if (Score < amount)
+            return false;
+
+        Score -= amount;
+        ScoreChanged?.Invoke(Score);
+        return true;
+    }
+
+    public void AddScore(double amount)
+    {
+        if (!double.IsFinite(amount) || amount <= 0d)
+        {
+            GD.PrintErr($"Attempted to add an invalid amount of score: {amount}");
+            return;
+        }
+
+        Score += amount;
+        ScoreChanged?.Invoke(Score);
+    }
+
     public bool SpendResource(string resourceName, int amount)
     {
         if (amount <= 0)
@@ -128,9 +162,6 @@ public partial class EconomyService : Node
         }
 
         if (entity is IValuable valuable)
-        {
-            Score += valuable.BaseValue;
-            ScoreChanged?.Invoke(Score);
-        }
+            AddScore(valuable.BaseValue);
     }
 }

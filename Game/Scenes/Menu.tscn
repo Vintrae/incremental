@@ -3,6 +3,9 @@
 [ext_resource type="StyleBox" uid="uid://cmnqpd5sifaaa" path="res://Game/Resources/Style/button.tres" id="2_s2c3o"]
 [ext_resource type="Texture2D" uid="uid://da07hfmhx1tbd" path="res://Game/Art/UI/InventoryButton.png" id="3_ma218"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_menu_panel"]
+bg_color = Color(0.12, 0.12, 0.12, 0.9)
+
 [node name="Menu" type="Control" unique_id=1824030726]
 z_index = 10
 layout_mode = 3
@@ -17,21 +20,33 @@ mouse_filter = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1056467661]
 layout_mode = 0
-offset_left = 232.0
-offset_top = 522.0
-offset_right = 488.0
-offset_bottom = 628.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_menu_panel")
+offset_left = 216.0
+offset_top = 514.0
+offset_right = 504.0
+offset_bottom = 636.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=104879880]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=104879880]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=947861775]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=947861775]
 layout_mode = 2
+custom_minimum_size = Vector2(288, 0)
+alignment = 1
+theme_override_constants/separation = 24
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=1830625378]
+[node name="InventoryContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1830625378]
 layout_mode = 2
+custom_minimum_size = Vector2(72, 0)
+alignment = 1
+theme_override_constants/separation = 8
 
-[node name="Inventory" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1255684932]
+[node name="Inventory" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/InventoryContainer" unique_id=1255684932]
 layout_mode = 2
 theme_override_styles/normal = ExtResource("2_s2c3o")
 theme_override_styles/pressed = ExtResource("2_s2c3o")
@@ -43,16 +58,56 @@ text = "
 icon = ExtResource("3_ma218")
 icon_alignment = 1
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=2144899562]
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/InventoryContainer" unique_id=2144899562]
 layout_mode = 2
 text = "Inventory"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="Sell" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=1706292055]
+[node name="UpgradesContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1067363321]
 layout_mode = 2
-text = "Sell"
+custom_minimum_size = Vector2(72, 0)
+alignment = 1
+theme_override_constants/separation = 8
 
-[node name="Upgrades" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=18446680]
+[node name="Upgrades" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/UpgradesContainer" unique_id=713975631]
+layout_mode = 2
+theme_override_styles/normal = ExtResource("2_s2c3o")
+theme_override_styles/pressed = ExtResource("2_s2c3o")
+theme_override_styles/hover = ExtResource("2_s2c3o")
+theme_override_styles/disabled = ExtResource("2_s2c3o")
+theme_override_styles/focus = ExtResource("2_s2c3o")
+text = "
+"
+icon = ExtResource("3_ma218")
+icon_alignment = 1
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/UpgradesContainer" unique_id=1793484377]
 layout_mode = 2
 text = "Upgrades"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="SellContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1772220053]
+layout_mode = 2
+custom_minimum_size = Vector2(72, 0)
+alignment = 1
+theme_override_constants/separation = 8
+
+[node name="Sell" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/SellContainer" unique_id=200837245]
+layout_mode = 2
+theme_override_styles/normal = ExtResource("2_s2c3o")
+theme_override_styles/pressed = ExtResource("2_s2c3o")
+theme_override_styles/hover = ExtResource("2_s2c3o")
+theme_override_styles/disabled = ExtResource("2_s2c3o")
+theme_override_styles/focus = ExtResource("2_s2c3o")
+text = "
+"
+icon = ExtResource("3_ma218")
+icon_alignment = 1
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/SellContainer" unique_id=1339221815]
+layout_mode = 2
+text = "Sell"
+horizontal_alignment = 1
+vertical_alignment = 2

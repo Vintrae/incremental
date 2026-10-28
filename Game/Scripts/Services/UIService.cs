@@ -9,6 +9,7 @@ public partial class UIService : Node
     private Label _scoreLabel;
     private Control _menuControl;
     private Control _inventoryControl;
+    private Control _upgradeControl;
     private Button _menuButton;
     private Button _closeButton;
     private Texture2D MenuButtonIcon = GD.Load<Texture2D>("res://Game/Art/UI/MenuButton.png");
@@ -49,10 +50,10 @@ public partial class UIService : Node
 
     private void OnMenuButtonPress()
     {
-        if (GodotObject.IsInstanceValid(_inventoryControl))
+        if (GodotObject.IsInstanceValid(_inventoryControl) ||
+            GodotObject.IsInstanceValid(_upgradeControl))
         {
-            _inventoryControl.QueueFree();
-            _inventoryControl = null;
+            ClosePanels();
             ShowMenu();
             return;
         }
@@ -70,26 +71,57 @@ public partial class UIService : Node
 
     private void OnInventoryButtonPress()
     {
-        if (GodotObject.IsInstanceValid(_inventoryControl))
+        OpenPanel("res://Game/Scenes/InventoryMenu.tscn", isUpgradeMenu: false);
+    }
+
+    private void OnUpgradesButtonPress()
+    {
+        OpenPanel("res://Game/Scenes/UpgradeMenu.tscn", isUpgradeMenu: true);
+    }
+
+    private void OpenPanel(string scenePath, bool isUpgradeMenu)
+    {
+        if ((isUpgradeMenu && GodotObject.IsInstanceValid(_upgradeControl)) ||
+            (!isUpgradeMenu && GodotObject.IsInstanceValid(_inventoryControl)))
             return;
 
-        var inventoryMenu = GD.Load<PackedScene>("res://Game/Scenes/InventoryMenu.tscn");
-        if (inventoryMenu == null)
+        var panelScene = GD.Load<PackedScene>(scenePath);
+        if (panelScene == null)
         {
-            GD.PrintErr("Failed to load inventory menu scene.");
+            GD.PrintErr($"Failed to load menu scene: {scenePath}");
             return;
         }
 
-        var inventoryControl = inventoryMenu.Instantiate<Control>();
+        var panelControl = panelScene.Instantiate<Control>();
         if (GodotObject.IsInstanceValid(_menuControl))
         {
             _menuControl.QueueFree();
             _menuControl = null;
         }
 
-        _inventoryControl = inventoryControl;
-        GetNode<Node2D>("../../UI").AddChild(_inventoryControl);
+        ClosePanels();
+        if (isUpgradeMenu)
+            _upgradeControl = panelControl;
+        else
+            _inventoryControl = panelControl;
+
+        GetNode<Node2D>("../../UI").AddChild(panelControl);
         EnsureCloseButton();
+    }
+
+    private void ClosePanels()
+    {
+        if (GodotObject.IsInstanceValid(_inventoryControl))
+        {
+            _inventoryControl.QueueFree();
+            _inventoryControl = null;
+        }
+
+        if (GodotObject.IsInstanceValid(_upgradeControl))
+        {
+            _upgradeControl.QueueFree();
+            _upgradeControl = null;
+        }
     }
 
     private void ShowMenu()
@@ -106,10 +138,12 @@ public partial class UIService : Node
 
         _menuControl = menu.Instantiate<Control>();
         GetNode<Node2D>("../../UI").AddChild(_menuControl);
-        var inventoryButton = _menuControl.GetNode<Button>("PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/Inventory");
+        var inventoryButton = _menuControl.GetNode<Button>("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/InventoryContainer/Inventory");
         inventoryButton.ButtonDown += OnInventoryButtonDown;
         inventoryButton.ButtonUp += OnInventoryButtonUp;
         inventoryButton.Pressed += OnInventoryButtonPress;
+        var upgradesButton = _menuControl.GetNode<Button>("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/UpgradesContainer/Upgrades");
+        upgradesButton.Pressed += OnUpgradesButtonPress;
         _menuButton.Icon = MenuButtonPressedIcon;
         _isMenuButtonPressed = true;
         EnsureCloseButton();
@@ -119,7 +153,7 @@ public partial class UIService : Node
     {
         if (GodotObject.IsInstanceValid(_menuControl))
         {
-            _menuControl.GetNode<Button>("PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/Inventory").Icon = InventoryButtonPressedIcon;
+            _menuControl.GetNode<Button>("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/InventoryContainer/Inventory").Icon = InventoryButtonPressedIcon;
         }
     }
 
@@ -127,7 +161,7 @@ public partial class UIService : Node
     {
         if (GodotObject.IsInstanceValid(_menuControl))
         {
-            _menuControl.GetNode<Button>("PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/Inventory").Icon = InventoryButtonIcon;
+            _menuControl.GetNode<Button>("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/InventoryContainer/Inventory").Icon = InventoryButtonIcon;
         }
     }
 
@@ -160,12 +194,7 @@ public partial class UIService : Node
             _menuControl = null;
         }
 
-        if (GodotObject.IsInstanceValid(_inventoryControl))
-        {
-            _inventoryControl.QueueFree();
-            _inventoryControl = null;
-        }
-
+        ClosePanels();
         _closeButton.Visible = false;
         _closeButton.GetParent()?.RemoveChild(_closeButton);
 

@@ -16,5 +16,6 @@
     <None Include="Game\Scenes\incremental.tscn" />
     <None Include="Game\Scenes\InventoryMenu.tscn" />
     <None Include="Game\Scenes\Menu.tscn" />
+    <None Include="Game\Scenes\UpgradeMenu.tscn" />
   </ItemGroup>
 </Project>

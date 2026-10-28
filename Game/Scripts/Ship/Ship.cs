@@ -1,5 +1,6 @@
 using Godot;
 using Incremental.Game.Scripts.Upgrades;
+using Incremental.Game.Scripts.Services;
 
 namespace Incremental.Game.Scripts.Ship;
 
@@ -13,10 +14,10 @@ public partial class Ship : Node2D
     private Node2D _uiRoot;
     private TextureRect _topBar;
     private TextureRect _bottomBar;
-    public UpgradeManager Upgrades { get; } = new();
+    public UpgradeService Upgrades { get; } = new();
 
     [Export]
-    [Upgradable(UpgradeIds.ShipSpeed, 1000f, 10)]
+    [Upgradable(AttributeIds.ShipSpeed, 1000f)]
     public float Speed = 500f;
 
     [Export]

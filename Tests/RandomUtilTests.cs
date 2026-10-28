@@ -1,4 +1,5 @@
 using Xunit;
+using Incremental.Game.Scripts.Utils;
 
 public class RandomUtilTests
 {
