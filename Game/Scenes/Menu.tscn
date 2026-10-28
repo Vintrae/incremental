@@ -20,13 +20,13 @@ mouse_filter = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1056467661]
 layout_mode = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_menu_panel")
 offset_left = 216.0
 offset_top = 514.0
 offset_right = 504.0
 offset_bottom = 636.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_menu_panel")
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1650149723]
 layout_mode = 2
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_bottom = 8
@@ -35,16 +35,16 @@ theme_override_constants/margin_bottom = 8
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=947861775]
-layout_mode = 2
 custom_minimum_size = Vector2(288, 0)
-alignment = 1
+layout_mode = 2
 theme_override_constants/separation = 24
+alignment = 1
 
 [node name="InventoryContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1830625378]
-layout_mode = 2
 custom_minimum_size = Vector2(72, 0)
-alignment = 1
+layout_mode = 2
 theme_override_constants/separation = 8
+alignment = 1
 
 [node name="Inventory" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/InventoryContainer" unique_id=1255684932]
 layout_mode = 2
@@ -65,10 +65,10 @@ horizontal_alignment = 1
 vertical_alignment = 2
 
 [node name="UpgradesContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1067363321]
-layout_mode = 2
 custom_minimum_size = Vector2(72, 0)
-alignment = 1
+layout_mode = 2
 theme_override_constants/separation = 8
+alignment = 1
 
 [node name="Upgrades" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/UpgradesContainer" unique_id=713975631]
 layout_mode = 2
@@ -89,10 +89,10 @@ horizontal_alignment = 1
 vertical_alignment = 2
 
 [node name="SellContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1772220053]
-layout_mode = 2
 custom_minimum_size = Vector2(72, 0)
-alignment = 1
+layout_mode = 2
 theme_override_constants/separation = 8
+alignment = 1
 
 [node name="Sell" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/SellContainer" unique_id=200837245]
 layout_mode = 2
