@@ -2,5 +2,37 @@
 
 [ext_resource type="Script" uid="uid://co6eyk7vg57yn" path="res://Game/Scripts/Fish/FishNode.cs" id="1_jvfhh"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_capture_background"]
+bg_color = Color(0.06, 0.1, 0.16, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.95, 0.95, 0.85, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_capture_fill"]
+bg_color = Color(1, 0.72, 0.12, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
 [node name="FishNode" type="Sprite2D" unique_id=38873841]
 script = ExtResource("1_jvfhh")
+
+[node name="CaptureProgress" type="ProgressBar" parent="."]
+visible = false
+z_index = 10
+offset_left = -28.0
+offset_top = -32.0
+offset_right = 28.0
+offset_bottom = -22.0
+show_percentage = false
+max_value = 1.0
+value = 0.0
+theme_override_styles/background = SubResource("StyleBoxFlat_capture_background")
+theme_override_styles/fill = SubResource("StyleBoxFlat_capture_fill")

@@ -7,6 +7,7 @@ namespace Incremental.Game.Scripts.Fish;
 public partial class FishNode : Sprite2D, ICatchable, IValuable, IInventoryResourceDrop
 {
     private FishData _data;
+    private ProgressBar _captureProgress;
 
     public FishData Data => _data;
     public Resource InventoryResource => _data;
@@ -31,6 +32,7 @@ public partial class FishNode : Sprite2D, ICatchable, IValuable, IInventoryResou
     {
         ZIndex = 1;
         Modulate = new Color(1, 1, 1, 0.6f);
+        _captureProgress = GetNode<ProgressBar>("CaptureProgress");
         // Create an Area2D for fishing interactions.
         var catchArea = new Area2D { Name = "CatchArea" };
         AddChild(catchArea);
@@ -50,5 +52,22 @@ public partial class FishNode : Sprite2D, ICatchable, IValuable, IInventoryResou
         };
 
         catchArea.AddChild(collisionShape);
+    }
+
+    public void StartCapture()
+    {
+        _captureProgress.Value = 0f;
+        _captureProgress.Visible = true;
+    }
+
+    public void UpdateCaptureProgress(float progress)
+    {
+        _captureProgress.Value = progress;
+    }
+
+    public void StopCapture()
+    {
+        _captureProgress.Visible = false;
+        _captureProgress.Value = 0f;
     }
 }

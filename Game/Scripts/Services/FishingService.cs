@@ -1,4 +1,5 @@
 using Godot;
+using Incremental.Game.Scripts.Fish;
 using Incremental.Game.Scripts.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -27,14 +28,19 @@ public partial class FishingService : Node
 		if (entity is ICatchable && !_progressByEntity.ContainsKey(entity))
 		{
 			_progressByEntity.Add(entity, 0f);
+			if (entity is FishNode fish)
+				fish.StartCapture();
 			GD.Print($"Started catching {entity}");
 		}
 	}
 
 	private void OnFishingAreaExited(Area2D area)
 	{
-		_progressByEntity.Remove(area.GetParent());
-		GD.Print($"Stopped catching {area.GetParent()}");
+		var entity = area.GetParent();
+		_progressByEntity.Remove(entity);
+		if (entity is FishNode fish && GodotObject.IsInstanceValid(fish))
+			fish.StopCapture();
+		GD.Print($"Stopped catching {entity}");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -58,10 +64,14 @@ public partial class FishingService : Node
 			float progress = _progressByEntity[entity];
 			progress = CatchProgress.Advance(progress, (float)delta, catchable.CatchDifficulty);
 			_progressByEntity[entity] = progress;
+			if (entity is FishNode fish)
+				fish.UpdateCaptureProgress(progress);
 
 			if (progress >= 1f)
 			{
 				_progressByEntity.Remove(entity);
+				if (entity is FishNode caughtFish)
+					caughtFish.StopCapture();
 				EntityCaught?.Invoke(entity);
 				entity.QueueFree();
 				GD.Print($"Caught {entity}");
