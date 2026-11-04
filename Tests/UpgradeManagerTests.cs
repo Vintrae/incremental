@@ -44,6 +44,27 @@ public class UpgradeManagerTests
     }
 
     [Fact]
+    public void FishingRadiusUpgrade_UpdatesRegisteredAttribute()
+    {
+        var target = new UpgradeTarget();
+        var manager = new UpgradeService();
+        var economy = new TestScoreWallet(10);
+        manager.Register(target);
+
+        Assert.True(manager.TryGet(UpgradeIds.FishingRadiusBoost, out UpgradeInfo info));
+        Assert.Equal(AttributeIds.FishingRadius, info.AttributeId);
+        Assert.Equal("Fishing Radius", info.DisplayName);
+        Assert.Equal(53.08484f, info.CurrentValue);
+        Assert.Equal(153.08484f, info.MaxValue);
+        Assert.Equal(10f, info.IncreaseAmount);
+        Assert.Equal(10, info.MaxLevel);
+        Assert.Equal(10d, info.NextCost);
+
+        Assert.True(manager.TryPurchase(UpgradeIds.FishingRadiusBoost, economy));
+        Assert.Equal(63.08484f, target.FishingRadius);
+    }
+
+    [Fact]
     public void Upgrade_DoesNotExceedMaximumLevel()
     {
         var target = new UpgradeTarget();
@@ -88,6 +109,9 @@ public class UpgradeManagerTests
     {
         [Upgradable(AttributeIds.ShipSpeed, 1000f)]
         public float Speed = 100f;
+
+        [Upgradable(AttributeIds.FishingRadius, 153.08484f)]
+        public float FishingRadius = 53.08484f;
     }
 
     private sealed class TestScoreWallet(double score) : IScoreWallet

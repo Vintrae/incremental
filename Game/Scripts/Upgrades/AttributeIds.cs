@@ -6,10 +6,12 @@ namespace Incremental.Game.Scripts.Upgrades;
 public static class AttributeIds
 {
     public const string ShipSpeed = "ShipSpeed";
+    public const string FishingRadius = "FishingRadius";
 
     public static IReadOnlyList<string> All { get; } = Array.AsReadOnly(new[]
     {
-        ShipSpeed
+        ShipSpeed,
+        FishingRadius
     });
 }
 

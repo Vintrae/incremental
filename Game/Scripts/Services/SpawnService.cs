@@ -54,13 +54,18 @@ public partial class SpawnService : Node
                 newFishNode.AddToGroup("fish");
 
                 // 5. Set its position and add it to the active game world tree
-                float margin_x = DisplayServer.WindowGetSize().X * 0.05f;
-                float margin_y = DisplayServer.WindowGetSize().Y * 0.05f;
-                float topbar_height = GetNode<TextureRect>("../../UI/TopBar").Size.Y;
-                float bottombar_height = GetNode<TextureRect>("../../UI/BottomBar").Size.Y;
+                Rect2 viewportBounds = GetViewport().GetVisibleRect();
+                float marginX = viewportBounds.Size.X * 0.05f;
+                float marginY = viewportBounds.Size.Y * 0.05f;
+                Rect2 topBarBounds = GetNode<TextureRect>("../../UI/TopBar").GetGlobalRect();
+                Rect2 bottomBarBounds = GetNode<TextureRect>("../../UI/BottomBar").GetGlobalRect();
                 newFishNode.GlobalPosition = new Vector2(
-                    (float)GD.RandRange(margin_x, DisplayServer.WindowGetSize().X - margin_x), 
-                    (float)GD.RandRange(margin_y + topbar_height, DisplayServer.WindowGetSize().Y - margin_y - bottombar_height));
+                    (float)GD.RandRange(
+                        viewportBounds.Position.X + marginX,
+                        viewportBounds.End.X - marginX),
+                    (float)GD.RandRange(
+                        Mathf.Max(viewportBounds.Position.Y + marginY, topBarBounds.End.Y + marginY),
+                        Mathf.Min(viewportBounds.End.Y - marginY, bottomBarBounds.Position.Y - marginY)));
 
                 // Adds it to the current active scene root
                 GetTree().CurrentScene.AddChild(newFishNode);

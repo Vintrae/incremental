@@ -53,9 +53,11 @@ public sealed class UpgradeDefinition
 public static class UpgradeIds
 {
     public const string ShipSpeedBoost = "ShipSpeedBoost";
+    public const string FishingRadiusBoost = "FishingRadiusBoost";
 
     public static IReadOnlyList<UpgradeDefinition> All { get; } = Array.AsReadOnly(new[]
     {
-        new UpgradeDefinition(ShipSpeedBoost, "Ship Speed", AttributeIds.ShipSpeed, 50f, 5d, 10)
+        new UpgradeDefinition(ShipSpeedBoost, "Ship Speed", AttributeIds.ShipSpeed, 50f, 5d, 10),
+        new UpgradeDefinition(FishingRadiusBoost, "Fishing Radius", AttributeIds.FishingRadius, 10f, 10d, 10)
     });
 }

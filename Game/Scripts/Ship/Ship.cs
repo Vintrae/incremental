@@ -11,6 +11,8 @@ public partial class Ship : Node2D
     private Vector2 _destination;
     private bool _hasDestination;
     private Sprite2D _shipSprite;
+    private CollisionShape2D _fishingRadius;
+    private CircleShape2D _fishingCircle;
     private Node2D _uiRoot;
     private TextureRect _topBar;
     private TextureRect _bottomBar;
@@ -19,6 +21,10 @@ public partial class Ship : Node2D
     [Export]
     [Upgradable(AttributeIds.ShipSpeed, 1000f)]
     public float Speed = 500f;
+
+    [Export]
+    [Upgradable(AttributeIds.FishingRadius, 153.08484f)]
+    public float FishingRadius = 53.08484f;
 
     [Export]
     public int FPS = 30;
@@ -31,10 +37,34 @@ public partial class Ship : Node2D
         Upgrades.Register(this);
         _destination = GlobalPosition;
         _shipSprite = GetNode<Sprite2D>("ShipSprite");
+        _fishingRadius = GetNode<CollisionShape2D>("FishingArea/FishingRadius");
+        _fishingCircle = (CircleShape2D)_fishingRadius.Shape;
+        _fishingCircle.Radius = FishingRadius;
+        Upgrades.UpgradeChanged += OnUpgradeChanged;
         _uiRoot = GetNode<Node2D>("../../UI");
         _topBar = GetNode<TextureRect>("../../UI/TopBar");
         _bottomBar = GetNode<TextureRect>("../../UI/BottomBar");
         intervalMax = 1f / FPS;
+        QueueRedraw();
+    }
+
+    public override void _ExitTree()
+    {
+        Upgrades.UpgradeChanged -= OnUpgradeChanged;
+    }
+
+    public override void _Draw()
+    {
+        Vector2 center = ToLocal(_fishingRadius.GlobalPosition);
+        float radius = _fishingCircle.Radius;
+        DrawCircle(center, radius, new Color(1f, 1f, 1f, 0.14f));
+        DrawArc(center, radius, 0f, Mathf.Tau, 64, new Color(1f, 1f, 1f, 0.5f), 2f);
+    }
+
+    private void OnUpgradeChanged()
+    {
+        _fishingCircle.Radius = FishingRadius;
+        QueueRedraw();
     }
 
     public override void _UnhandledInput(InputEvent @event)
